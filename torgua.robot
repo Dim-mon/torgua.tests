@@ -38,25 +38,13 @@ ${locator.questions[0].answer}       xpath=//div[@class = 'answer relative']//di
   ...      alias=${ARGUMENTS[0]}
   Set Window Size       @{USERS.users['${ARGUMENTS[0]}'].size}
   Set Window Position   @{USERS.users['${ARGUMENTS[0]}'].position}
-  Run Keyword And Ignore Error       Pre Login   ${ARGUMENTS[0]}
-  Wait Until Page Contains Element   jquery=a[href="/cabinet"]
-  Click Element                      jquery=a[href="/cabinet"]
-  Input text                         name=email      ${USERS.users['${username}'].login}
-  Sleep  2
-  Input text                         name=psw        ${USERS.users['${username}'].password}
-  Wait Until Page Contains Element   xpath=//button[contains(@class, 'btn')][./text()='Вхід в кабінет']   20
-  Click Element                      xpath=//button[contains(@class, 'btn')][./text()='Вхід в кабінет']
-
-Pre Login
-  [Arguments]  @{ARGUMENTS}
-  [Documentation]
-  ...      ${ARGUMENTS[0]} ==  username
-  ${login}=     Get Broker Property By Username  ${ARGUMENTS[0]}  login
-  ${password}=  Get Broker Property By Username  ${ARGUMENTS[0]}  password
-  Wait Until Page Contains Element  name=siteLogin  10
-  Input Text                        name=siteLogin  ${login}
-  Input Text                        name=sitePass   ${password}
-  Click Button                      xpath=.//*[@id='table1']/tbody/tr/td/form/p[3]/input
+  Click Element  xpath= //a[@class="log"]
+  Wait Until Page Contains Element  id=content
+  Click Element  name=send_auth
+  Wait Until Page Contains Element  id=content
+  Input text  name=login  ${USERS.users['${ARGUMENTS[0]}'].login}
+  Input text  name=password  ${USERS.users['${ARGUMENTS[0]}'].password}
+  Click Element  name=send_auth
 
 Створити тендер
   [Arguments]  @{ARGUMENTS}
@@ -231,16 +219,11 @@ Set Multi Ids
   ...      ${ARGUMENTS[1]} ==  tenderId
   Switch browser   ${ARGUMENTS[0]}
   Go To  ${USERS.users['${ARGUMENTS[0]}'].homepage}
-  Wait Until Page Contains            Держзакупівлі.онлайн   10
-  Click Element                       xpath=//a[text()='Закупівлі']
-  sleep  1
-  Click Element                       xpath=//select[@name='filter[object]']/option[@value='tenderID']
-  Input text                          xpath=//input[@name='filter[search]']  ${ARGUMENTS[1]}
-  Click Element                       xpath=//button[@class='btn'][./text()='Пошук']
-  Wait Until Page Contains            ${ARGUMENTS[1]}   10
-  Capture Page Screenshot
-  sleep  1
-  Click Element                       xpath=//a[@class='reverse tenderLink']
+  Wait Until Page Contains Element  id=search
+  Input text  name=q  ${ARGUMENTS[1]}
+  Click Element  xpath=//button[contains(text(), 'Пошук')]
+  Click Element  xpath=.//*[@class='row lots']/a
+  Wait Until Page Contains Element  id=content
 
 Задати питання
   [Arguments]  @{ARGUMENTS}
