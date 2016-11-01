@@ -219,6 +219,7 @@ Set Multi Ids
   Go To  ${USERS.users['${ARGUMENTS[0]}'].homepage}
   Wait Until Page Contains Element  id=search
   Click Element  xpath=.//*[@class='dropdown-toggle']
+  Click Element  xpath=//a[text()='Закупівлі']
   Input text  name=q  ${ARGUMENTS[1]}
   Click Element  xpath=//button[contains(text(), 'Пошук')]
   Click Element  xpath=.//*[@class='row lots']/a
