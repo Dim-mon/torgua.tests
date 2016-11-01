@@ -40,8 +40,6 @@ ${locator.questions[0].answer}       xpath=//div[@class = 'answer relative']//di
   Set Window Position   @{USERS.users['${ARGUMENTS[0]}'].position}
   Click Element  xpath= //a[@class="log"]
   Wait Until Page Contains Element  id=content
-  Click Element  name=send_auth
-  Wait Until Page Contains Element  id=content
   Input text  name=login  ${USERS.users['${ARGUMENTS[0]}'].login}
   Input text  name=password  ${USERS.users['${ARGUMENTS[0]}'].password}
   Click Element  name=send_auth
@@ -220,6 +218,7 @@ Set Multi Ids
   Switch browser   ${ARGUMENTS[0]}
   Go To  ${USERS.users['${ARGUMENTS[0]}'].homepage}
   Wait Until Page Contains Element  id=search
+  Click Element  xpath=.//*[@class='dropdown-toggle']
   Input text  name=q  ${ARGUMENTS[1]}
   Click Element  xpath=//button[contains(text(), 'Пошук')]
   Click Element  xpath=.//*[@class='row lots']/a
