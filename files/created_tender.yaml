@@ -1,0 +1,88 @@
+access:
+    token: 6a4c595712644d428b54196f2f45ac63
+data:
+    awardCriteria: lowestCost
+    date: '2016-10-09T19:01:49.521902+03:00'
+    dateModified: '2016-10-09T19:01:49.525026+03:00'
+    description: Тестовий тендер
+    description_en: Test tender
+    description_ru: Тестовый тендер
+    enquiryPeriod:
+        endDate: '2016-10-09T19:14:48.402802+03:00'
+        startDate: '2016-10-09T19:01:48.402802+03:00'
+    id: 586867d33c0b4af6a559ed5cb51eb29d
+    items:
+    -   additionalClassifications:
+        -   description: Папір і картон гофровані, паперова й картонна тара
+            id: 17.21.1
+            scheme: ДКПП
+        classification:
+            description: Картонні коробки
+            description_en: Cartons
+            description_ru: Большие картонные коробки
+            id: 44617100-9
+            scheme: CPV
+        deliveryAddress:
+            countryName: Україна
+            countryName_en: Ukraine
+            countryName_ru: Украина
+            locality: м. Київ
+            postalCode: '32219'
+            region: м. Київ
+            streetAddress: 4442 Jane Forest Apt. 808
+        deliveryDate:
+            endDate: '2016-10-14T19:01:48.407387+03:00'
+        deliveryLocation:
+            latitude: 49.85
+            longitude: 24.0167
+        description: 'i-d795f583: Front-line bottom-line budgetary management'
+        id: 12c7593494ac422198d768a9339175f4
+        quantity: 4261
+        unit:
+            code: KGM
+            name: кілограми
+            name_en: kilogram
+            name_ru: килограммы
+    minimalStep:
+        amount: 380.43
+        currency: UAH
+        valueAddedTaxIncluded: true
+    mode: test
+    next_check: '2016-10-09T19:14:48.402802+03:00'
+    owner: test.quintagroup.com
+    procurementMethod: open
+    procurementMethodType: belowThreshold
+    procuringEntity:
+        address:
+            countryName: Україна
+            countryName_en: Ukraine
+            countryName_ru: Украина
+            locality: м. Київ
+            postalCode: 02469
+            region: м. Київ
+            streetAddress: 86234 Jane Drive
+        contactPoint:
+            name: Кирило Венгринович
+            telephone: +38 392 261 94 43
+        identifier:
+            id: 00003908
+            scheme: UA-EDR
+            uri: https://placeholdit.imgix.net/~text?txtsize=55&txt=293×142&w=293&h=142
+        kind: other
+        name: Дацюк-Кальченко
+        name_en: Hill Inc
+        name_ru: Богданов-Молчанов
+    status: active.enquiries
+    submissionMethod: electronicAuction
+    submissionMethodDetails: quick
+    tenderID: UA-2016-10-09-000057
+    tenderPeriod:
+        endDate: '2016-10-09T19:27:48.402802+03:00'
+        startDate: '2016-10-09T19:14:48.402802+03:00'
+    title: '[ТЕСТУВАННЯ] Customizable upward-trending task-force'
+    title_en: '[TESTING] '
+    title_ru: '[ТЕСТИРОВАНИЕ] '
+    value:
+        amount: 50000.99
+        currency: UAH
+        valueAddedTaxIncluded: true
