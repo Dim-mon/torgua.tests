@@ -6,10 +6,10 @@ Library  torgua_service.py
 
 *** Variables ***
 ${locator.tenderId}                  xpath=//td[./text()='TenderID']/following-sibling::td[1]
-${locator.title}                     xpath=//td[./text()='Загальна назва закупівлі']/following-sibling::td[1]
-${locator.description}               xpath=//td[./text()='Предмет закупівлі']/following-sibling::td[1]
-${locator.value.amount}              xpath=//td[./text()='Максимальний бюджет']/following-sibling::td[1]
-${locator.minimalStep.amount}        xpath=//td[./text()='Мінімальний крок зменшення ціни']/following-sibling::td[1]
+${locator.title}                     xpath=///div[@class = 'tender_head col-md-9']
+${locator.description}               xpath=///div[@class = 'tender_head col-md-9']
+${locator.value.amount}              xpath=//div[@class = 'sum']
+${locator.minimalStep.amount}        xpath=//div[@class = 'step']
 ${locator.enquiryPeriod.endDate}     xpath=//td[./text()='Завершення періоду обговорення']/following-sibling::td[1]
 ${locator.tenderPeriod.endDate}      xpath=//td[./text()='Завершення періоду прийому пропозицій']/following-sibling::td[1]
 ${locator.items[0].deliveryAddress.countryName}    xpath=//td[@class='nameField'][./text()='Адреса поставки']/following-sibling::td[1]
@@ -56,31 +56,31 @@ ${locator.questions[0].answer}       xpath=//div[@class = 'answer relative']//di
   ${budget}=        Get From Dictionary   ${ARGUMENTS[1].data.value}         amount
   ${step_rate}=     Get From Dictionary   ${ARGUMENTS[1].data.minimalStep}   amount
 
-  ${items_description}=   Get From Dictionary   ${ARGUMENTS[1].data}         description
-  ${quantity}=      Get From Dictionary   ${items[0]}         quantity
-  ${countryName}=   Get From Dictionary   ${ARGUMENTS[1].data.procuringEntity.address}       countryName
-  ${delivery_end_date}=      Get From Dictionary   ${items[0].deliveryDate}   endDate
-  ${delivery_end_date}=      convert_date_to_slash_format   ${delivery_end_date}
-  ${cpv}=           Convert To String   Картонки
-  ${cpv_id}=        Get From Dictionary   ${items[0].classification}         id
-  ${cpv_id1}=       Replace String        ${cpv_id}   -   _
-  ${dkpp_desc}=     Get From Dictionary   ${items[0].additionalClassifications[0]}   description
-  ${dkpp_id}=       Get From Dictionary   ${items[0].additionalClassifications[0]}   id
-  ${dkpp_id1}=      Replace String        ${dkpp_id}   -   _
+	${items_description}=   Get From Dictionary   ${ARGUMENTS[1].data}         description
+	${quantity}=      Get From Dictionary   ${items[0]}         quantity
+	${countryName}=   Get From Dictionary   ${ARGUMENTS[1].data.procuringEntity.address}       countryName
+	${delivery_end_date}=      Get From Dictionary   ${items[0].deliveryDate}   endDate
+	${delivery_end_date}=      convert_date_to_slash_format   ${delivery_end_date}
+	${cpv}=           Convert To String   Картонки
+	${cpv_id}=        Get From Dictionary   ${items[0].classification}         id
+	${cpv_id1}=       Replace String        ${cpv_id}   -   _
+	${dkpp_desc}=     Get From Dictionary   ${items[0].additionalClassifications[0]}   description
+	${dkpp_id}=       Get From Dictionary   ${items[0].additionalClassifications[0]}   id
+	${dkpp_id1}=      Replace String        ${dkpp_id}   -   _
 
-  ${enquiry_end_date}=   Get From Dictionary         ${ARGUMENTS[1].data.enquiryPeriod}   endDate
-  ${enquiry_end_date}=   convert_date_to_slash_format   ${enquiry_end_date}
-  ${end_date}=      Get From Dictionary   ${ARGUMENTS[1].data.tenderPeriod}   endDate
-  ${end_date}=      convert_date_to_slash_format   ${end_date}
+	${enquiry_end_date}=   Get From Dictionary         ${ARGUMENTS[1].data.enquiryPeriod}   endDate
+	${enquiry_end_date}=   convert_date_to_slash_format   ${enquiry_end_date}
+	${end_date}=      Get From Dictionary   ${ARGUMENTS[1].data.tenderPeriod}   endDate
+	${end_date}=      convert_date_to_slash_format   ${end_date}
 
   Selenium2Library.Switch Browser     ${ARGUMENTS[0]}
-  Wait Until Page Contains Element    jquery=a[href="/tenders/new"]   30
-  Click Element                       jquery=a[href="/tenders/new"]
-  Wait Until Page Contains Element    name=tender_title   30
-  Input text                          name=tender_title    ${title}
-  Input text                          name=tender_description    ${description}
-  Input text                          name=tender_value_amount   ${budget}
-  Input text                          name=tender_minimalStep_amount   ${step_rate}
+  Wait Until Page Contains Element    jquery=a[href="#tenders"]
+  Click Element                       jquery=a[href="?act=create-tender"]
+  Wait Until Page Contains Element    name=procurementMethodType
+#  Input text                          name=tender_title    ${title}
+  Input text                          name=procurementMethodType    yraaaa
+#  Input text                          name=tender_value_amount   ${budget}
+#  Input text                          name=tender_minimalStep_amount   ${step_rate}
 
 # Додати специфікацю початок
   Input text                          name=items[0][item_description]    ${items_description}
@@ -217,7 +217,7 @@ Set Multi Ids
   ...      ${ARGUMENTS[1]} ==  tenderId
   Switch browser   ${ARGUMENTS[0]}
   Go To  ${USERS.users['${ARGUMENTS[0]}'].homepage}
-  Wait Until Page Contains Element  id=search
+  Wait Until Page Contains Element  id=content
   Click Element  xpath=.//*[@class='dropdown-toggle']
   Click Element  xpath=//a[text()='Закупівлі']
   Input text  name=q  ${ARGUMENTS[1]}
