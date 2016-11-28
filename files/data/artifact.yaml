@@ -1,7 +1,7 @@
-access_token: 6a4c595712644d428b54196f2f45ac63
+access_token: e2e5035c5e764df98aa32908c58267f3
 api_version: '2.3'
-last_modification_date: '2016-10-09 19:20:21.032191'
-mode: single
-tender_id: 04bd1099f4b643adbeb0cb0ddb0dc5b9
+last_modification_date: '2016-11-28T03:36:33.950291+02:00'
+mode: test
+tender_id: e2e5035c5e764df98aa32908c58267f3
 tender_owner: Quinta
-tender_uaid: UA-2016-10-30-000015
+tender_uaid: UA-2016-11-28-000011-2

@@ -74,8 +74,10 @@ ${locator.questions[0].answer}       xpath=//div[@class = 'answer relative']//di
 	${end_date}=      convert_date_to_slash_format   ${end_date}
 
   Selenium2Library.Switch Browser     ${ARGUMENTS[0]}
+  Click Element  xpath= //a[@class="log"]
   Wait Until Page Contains Element    jquery=a[href="#tenders"]
   Click Element                       jquery=a[href="?act=create-tender"]
+
   Wait Until Page Contains Element    name=procurementMethodType
 #  Input text                          name=tender_title    ${title}
   Input text                          name=procurementMethodType    yraaaa
@@ -111,10 +113,9 @@ ${locator.questions[0].answer}       xpath=//div[@class = 'answer relative']//di
   Run Keyword if   '${mode}' == 'multi'   Додати багато предметів   items
   Unselect Frame
 
-  Click Element                       xpath= //button[@value='publicate']
-  Wait Until Page Contains            Тендер опубліковано    30
+  Click Element                       xpath= //span[@class="add-item"]
 
-  ${tender_UAid}=   Get Text          xpath=//*/section[6]/table/tbody/tr[2]/td[2]
+  #${tender_UAid}=   Get Text          xpath=//*/section[6]/table/tbody/tr[2]/td[2]
   ${Ids}=   Convert To String         ${tender_UAid}
   Run keyword if   '${mode}' == 'multi'   Set Multi Ids   ${tender_UAid}
   [return]  ${Ids}
