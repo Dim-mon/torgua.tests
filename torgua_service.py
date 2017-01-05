@@ -1,8 +1,8 @@
-from datetime import datetime, timedelta
+import dateutil.parser
+from datetime import datetime
+from pytz import timezone
+import os
 
-
-def subtract_from_time(date_time, subtr_min, subtr_sec):
-    sub = datetime.strptime(date_time, "%d.%m.%Y %H:%M")
-    sub = (sub - timedelta(minutes=int(subtr_min),
-                           seconds=int(subtr_sec))).isoformat()
-    return sub
+def polonex_convertdate(isodate):
+    date = dateutil.parser.parse(isodate)
+    return date.strftime("%d-%m-%Y %H:%M")

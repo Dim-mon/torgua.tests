@@ -1,4 +1,4 @@
-access:
+ccess:
     token: 6a4c595712644d428b54196f2f45ac63
 data:
     awardCriteria: lowestCost
@@ -8,16 +8,16 @@ data:
     description_en: Test tender
     description_ru: Тестовый тендер
     enquiryPeriod:
-        endDate: '2016-10-09T19:14:48.402802+03:00'
-        startDate: '2016-10-09T19:01:48.402802+03:00'
+        endDate: '2016-12-28T00:14:48.402802+03:00'
+        startDate: '2016-12-29T00:01:48.402802+03:00'
     id: 586867d33c0b4af6a559ed5cb51eb29d
     items:
     -   additionalClassifications:
-        -   description: Папір і картон гофровані, паперова й картонна тара
+        -   description: 'Папір і картон гофровані, паперова й картонна тара'
             id: 17.21.1
             scheme: ДКПП
         classification:
-            description: Картонні коробки
+            description: 'Картонні коробки'
             description_en: Cartons
             description_ru: Большие картонные коробки
             id: 44617100-9
@@ -27,7 +27,7 @@ data:
             countryName_en: Ukraine
             countryName_ru: Украина
             locality: м. Київ
-            postalCode: '32219'
+            postalCode: 02469
             region: м. Київ
             streetAddress: 4442 Jane Forest Apt. 808
         deliveryDate:
@@ -39,7 +39,7 @@ data:
         id: 12c7593494ac422198d768a9339175f4
         quantity: 4261
         unit:
-            code: KGM
+            code: 'KGM'
             name: кілограми
             name_en: kilogram
             name_ru: килограммы
@@ -60,14 +60,14 @@ data:
             locality: м. Київ
             postalCode: 02469
             region: м. Київ
-            streetAddress: 86234 Jane Drive
+            streetAddress: 4442 Jane Forest Apt. 808
         contactPoint:
-            name: Кирило Венгринович
+            name: Кирило Кирило Венгринович
             telephone: +38 392 261 94 43
         identifier:
             id: 00003908
             scheme: UA-EDR
-            uri: https://placeholdit.imgix.net/~text?txtsize=55&txt=293×142&w=293&h=142
+            uri: https://placeholdit.imgix.net
         kind: other
         name: Дацюк-Кальченко
         name_en: Hill Inc
@@ -75,9 +75,9 @@ data:
     status: active.enquiries
     submissionMethod: electronicAuction
     submissionMethodDetails: quick
-    tenderID: UA-2016-10-09-000057
+    tenderID: UA-2016-10-09-000027
     tenderPeriod:
-        endDate: '2016-10-09T19:27:48.402802+03:00'
+         endDate: '2016-10-09T19:27:48.402802+03:00'
         startDate: '2016-10-09T19:14:48.402802+03:00'
     title: '[ТЕСТУВАННЯ] Customizable upward-trending task-force'
     title_en: '[TESTING] '
