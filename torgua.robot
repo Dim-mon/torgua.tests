@@ -46,7 +46,7 @@ ${locator.items[0].deliveryAddress.streetAddress}        xpath=//*[@class='da_st
 #${locator.items[0].deliveryAddress.region}        xpath=//*[@class='da_region']
 #${locator.items[0].deliveryAddress.region}        xpath=//*[@class='da_region']
 
-${locator.procuringEntity.name}         xpath=//*[@class='tender_info_block'][7]//tr[1]//td[2]
+${locator.procuringEntity.name}         xpath=//*[text()='ОРГАНІЗАТОР ЗАКУПІВЛІ']/following-sibling::*[1]//*[2]//*[2]
 
 ${locator.items[0].quantity}         xpath=//td[./text()='Кількість']/following-sibling::td[1]
 ${locator.items[0].unit.code}        xpath=//td[./text()='Одиниця виміру']/following-sibling::td[1]
@@ -168,8 +168,12 @@ ${locator.awards[1].complaintPeriod.endDate}
 
   Input text                          //*[@name='value:amount']   ${value_amount}
   Click Element                       //*[@name='minimalStep:amount']
+
+  #${minimalStep_amount}=   Convert To String     ${minimalStep_amount}
+
+  Click Element                       //*[@name='autocomplete']
   Input text                          //*[@name='minimalStep:amount']   ${minimalStep_amount}
-  Click Element                       //*[@name='minimalStep:amount']
+  #Click Element                       //*[@name='minimalStep:amount']
 
   #Dates
   Input text                          //*[@name='enquiryPeriod:startDate']   ${enquiryPeriod_startDate}
@@ -181,7 +185,6 @@ ${locator.awards[1].complaintPeriod.endDate}
 
   Click Element                       //*[text()='Додати предмет закупiвлi']
 
-  Sleep  2
 
   Input text                          //*[@name='items:description[]']    ${items_description}
   Click Element                       //*[@name='items:classification:id[]']
@@ -361,6 +364,34 @@ ${locator.awards[1].complaintPeriod.endDate}
   Input text                          xpath=//textarea[@name='description']                 ${description}
   Click Element                       xpath=//*[@name='add-question']
 
+Подати цінову пропозицію
+  [Arguments]  @{ARGUMENTS}
+  [Documentation]
+  ...      ${ARGUMENTS[0]} ==  username
+  ...      ${ARGUMENTS[1]} ==  ${TENDER_UAID}
+  ...      ${ARGUMENTS[2]} ==  ${test_bid_data}
+  ${amount}=    Get From Dictionary     ${ARGUMENTS[2].data.value}         amount
+  sleep  60
+  torgua.Пошук тендера по ідентифікатору   ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
+  sleep  15
+  Click Element                     xpath=//*[@class='lots_comments']//button
+  Input text    xpath=//input[@name='value:amount']                  ${amount}
+  Click Element                     xpath=//*[@name='cq']
+  Click Element                     xpath=//*[@name='ce']
+  Click Element                     xpath=//button[text()='Подати заявку']
+
+Змінити цінову пропозицію
+  [Arguments]  @{ARGUMENTS}
+  [Documentation]
+  ...      ${ARGUMENTS[0]} ==  username
+  ...      ${ARGUMENTS[1]} ==  ${TENDER_UAID}
+  ...      ${ARGUMENTS[2]} ==  ${test_bid_data}
+  torgua.Пошук тендера по ідентифікатору   ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
+  Sleep    5
+  Input text    xpath=//input[@name='amount']        510
+  Sleep    3
+  Click Element                      xpath=//div[3]/button
+
 Пошук тендера по ідентифікатору
   [Arguments]  @{ARGUMENTS}
   [Documentation]
@@ -492,9 +523,9 @@ ${locator.awards[1].complaintPeriod.endDate}
 
 отримати інформацію про questions[0].answer
   sleep  1
-  Click Element                       xpath=//a[@class='reverse tenderLink']
-  sleep  1
-  Click Element                       xpath=//a[@class='reverse openCPart'][span[text()='Обговорення']]
+  #Click Element                       xpath=//a[@class='reverse tenderLink']
+  #sleep  1
+  Click Element                       xpath=//*[text() = 'Обговорення ']
   ${questionsAnswer}=   Отримати текст із поля і показати на сторінці   questions[0].answer
   [return]  ${questionsAnswer}
 
@@ -564,12 +595,13 @@ ${locator.awards[1].complaintPeriod.endDate}
 отримати інформацію про items[0].deliveryLocation.longitude
   ${deliveryLocationLongitude}=   Отримати текст із поля і показати на сторінці     items[0].deliveryLocation.longitude
   #${deliveryLocationLongitude}=   Convert To Number     ${deliveryLocationLongitude}
-  Run Keyword And Return  Convert To Number  ${deliveryLocationLongitude}
+  Run Keyword And Return  Convert To Number   ${deliveryLocationLongitude}
 
 отримати інформацію про items[0].deliveryLocation.latitude
   ${deliveryLocationLatitude}=   Отримати текст із поля і показати на сторінці     items[0].deliveryLocation.latitude
   #${deliveryLocationLatitude}=   Convert To Number     ${deliveryLocationLatitude}
-  Run Keyword And Return  Convert To Number  ${deliveryLocationLatitude}
+  Log    Convert To Number  ${deliveryLocationLatitude}
+  Run Keyword And Return  Convert To Number   ${deliveryLocationLatitude}
 
 отримати інформацію про items[0].deliveryAddress.postalCode
   ${deliveryAddressPostalCode}=   Отримати текст із поля і показати на сторінці     items[0].deliveryAddress.postalCode
