@@ -33,7 +33,7 @@ ${locator.items[0].classification.description}       xpath=//*[text()='Клас:
 ${locator.items[0].additionalClassifications[0].id}       xpath=//*[text()='Клас: ДКПП']/parent::tr//td[2]/*[@class='ac_id']
 ${locator.items[0].additionalClassifications[0].description}       xpath=//*[text()='Клас: ДКПП']/parent::tr//td[2]/*[@class='ac_desc']
 
-${locator.items[0].deliveryLocation.latitude}        xpath=//*[@name='items:deliveryLocation:latitude[]']
+${locator.items[0].deliveryLocation.latitude}         xpath=//*[@name='items:deliveryLocation:latitude[]']
 ${locator.items[0].deliveryLocation.longitude}        xpath=//*[@name='items:deliveryLocation:longitude[]']
 
 ${locator.items[0].deliveryAddress.countryName}    xpath=//*[@class='da_countryName']
@@ -226,7 +226,7 @@ ${locator.awards[1].complaintPeriod.endDate}
   [return]  ${tender_UAid}
 
 Завантажити документ
-[Arguments]  ${file} ${tender_uaid}
+[Arguments]  ${username}  ${file}  ${tender_uaid}
   [Documentation]
   ...      ${ARGUMENTS[0]} ==  username
   ...      ${ARGUMENTS[1]} ==  file
@@ -549,7 +549,6 @@ ${locator.awards[1].complaintPeriod.endDate}
 
 отримати інформацію про items[0].additionalClassifications[0].description
   ${additionalClassificationsDescription}=   Отримати текст із поля і показати на сторінці     items[0].additionalClassifications[0].description
-  ${additionalClassificationsDescription}=   Convert To Lowercase   ${additionalClassificationsDescription}
   [return]  ${additionalClassificationsDescription}
 
 отримати інформацію про items[0].quantity
@@ -595,13 +594,14 @@ ${locator.awards[1].complaintPeriod.endDate}
 отримати інформацію про items[0].deliveryLocation.longitude
   ${deliveryLocationLongitude}=   Отримати текст із поля і показати на сторінці     items[0].deliveryLocation.longitude
   #${deliveryLocationLongitude}=   Convert To Number     ${deliveryLocationLongitude}
-  Run Keyword And Return  Convert To Number   ${deliveryLocationLongitude}
+  #Run Keyword And Return  Convert To Number   ${deliveryLocationLongitude}
+  [return]  ${deliveryLocationLongitude}
 
 отримати інформацію про items[0].deliveryLocation.latitude
   ${deliveryLocationLatitude}=   Отримати текст із поля і показати на сторінці     items[0].deliveryLocation.latitude
   #${deliveryLocationLatitude}=   Convert To Number     ${deliveryLocationLatitude}
-  Log    Convert To Number  ${deliveryLocationLatitude}
-  Run Keyword And Return  Convert To Number   ${deliveryLocationLatitude}
+  #Run Keyword And Return  Convert To Number   ${deliveryLocationLatitude}
+  [return]  ${deliveryLocationLatitude}
 
 отримати інформацію про items[0].deliveryAddress.postalCode
   ${deliveryAddressPostalCode}=   Отримати текст із поля і показати на сторінці     items[0].deliveryAddress.postalCode
