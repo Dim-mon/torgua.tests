@@ -76,16 +76,16 @@ tendermaster:
         tender_owner: Tendermaster_Owner
         viewer: Tendermaster_Viewer
     timeout_on_wait: 170
-E-tender:
+Etender:
     intervals:
         default:
             enquiry: [0, 5]
     keywords_file: etender
     roles:
-        provider:       E-tender_Provider1
-        provider1:      E-tender_Provider2
-        tender_owner:   E-tender_Owner
-        viewer:         E-tender_Viewer
+        provider:       Etender_Provider1
+        provider1:      Etender_Provider2
+        tender_owner:   Etender_Owner
+        viewer:         Etender_Viewer
     timeout_on_wait: 600
 DZO:
     intervals:
@@ -101,21 +101,6 @@ DZO:
         provider:       DZO_Provider
         provider1:      DZO_Provider1
         viewer:         DZO_Viewer
-    timeout_on_wait: 300
-torgua:
-    intervals:
-        default:
-            enquiry: [0, 20]
-            tender:  [0, 20]
-        openua:
-            accelerator: 720
-            tender:  [0, 30]
-    keywords_file: torgua
-    roles:
-        tender_owner:   torgua_Owner
-        provider:       torgua_Provider
-        provider1:      torgua_Provider1
-        viewer:         torgua_Viewer
     timeout_on_wait: 300
 ztv:
     intervals:
@@ -277,8 +262,8 @@ APStender:
         tender_owner:   aps_Owner
     intervals:
         default:
-            enquiry: [0, 15]
-            tender:  [0, 15]
+            enquiry: [0, 5]
+            tender:  [0, 12]
     timeout_on_wait: 10
 upetem:
     intervals:
@@ -293,3 +278,18 @@ upetem:
         tender_owner:   upetem_Owner
         viewer:         upetem_Viewer
     timeout_on_wait: 50
+torgua:
+    intervals:
+        default:
+            enquiry: [0, 20]
+            tender:  [0, 20]
+        openua:
+            accelerator: 720
+            tender:  [0, 30]
+    keywords_file: torgua
+    roles:
+        tender_owner:   torgua_Owner
+        provider:       torgua_Provider
+        provider1:      torgua_Provider1
+        viewer:         torgua_Viewer
+    timeout_on_wait: 300
