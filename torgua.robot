@@ -222,9 +222,11 @@ ${locator.awards[1].complaintPeriod.endDate}
 
   Click Element                       //*[text()='Зберегти']
   Click Element                       //*[@class='alert alert-info'][last()]//a[@data-original-title="Акцептувати чернетку"]
-  Sleep  20
+  Execute Javascript                 window.scroll(9999,9999)
+  Sleep  10
   Click Element                       //*[@class='panel panel-default'][1]//*[@class='glyphicon glyphicon-ok-sign']
-  Sleep  20
+  Execute Javascript                 window.scroll(9999,9999)
+  Sleep  10
   ${tender_UAid}=  Get Text           //*[@class='panel panel-default'][1]//*[@class='label label-primary']
   [return]  ${tender_UAid}
 
@@ -237,12 +239,14 @@ ${locator.awards[1].complaintPeriod.endDate}
   Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
   Wait Until Page Contains Element  id=content
   Click Element                       //*[text()='Мої закупівлі']
+  Execute Javascript                 window.scroll(9999,9999)
   Sleep  10
   Click Element                       //*[@class='panel panel-default'][1]//*[@class='col-lg-4 text-right']//*[@class='glyphicon glyphicon-pencil']
   Click Element                       //*[text()='Додати файл']
   Завантажити документ до тендеру   ${ARGUMENTS[1]}
   Input Text                          //*[@name='document:description[]']     Test text
   Click Element                       //*[text()='Зберегти']
+  Execute Javascript                 window.scroll(9999,9999)
   Sleep  20
   Click Element                       //*[@class='panel panel-default'][1]//*[@class='glyphicon glyphicon-ok-sign']
 
@@ -285,7 +289,7 @@ ${locator.awards[1].complaintPeriod.endDate}
 
   Input text                          //*[@name='NameUa']    ${procuringEntity_name}
   #Input text                          //*[@name='RegionUa']    ${region}
-  #Input text                          //*[@name='AddressUa']    ${streetAddress}
+  Input text                          //*[@name='AddressUa']    ${streetAddress}
   Input text                          //*[@name='ZipCode']    ${postalCode}
 
   Input text                          //*[@name='ContactPhoneNumber']    ${contactPointName}
@@ -303,14 +307,14 @@ ${locator.awards[1].complaintPeriod.endDate}
   ...      ${ARGUMENTS[0]} =  username
   ...      ${ARGUMENTS[1]} =  ${TENDER_UAID}
   #Selenium2Library.Switch Browser    ${ARGUMENTS[0]}
-  torgua.Пошук тендера по ідентифікатору   ${ARGUMENTS[0]}   ${ARGUMENTS[1]}
   Selenium2Library.Switch Browser     ${ARGUMENTS[0]}
 
   Wait Until Page Contains Element  id=content
 
   Click Element                       //*[@class='log']
   Click Element                       //*[text()='Мої закупівлі']
-  Sleep  20
+  Execute Javascript                 window.scroll(9999,9999)
+  Sleep  15
   Click Element                       //*[@id='tendersList']//*[text()='${ARGUMENTS[1]}']//ancestor::*[3]//*[@class='glyphicon glyphicon-pencil']
 
   #${tender_status}=  Get Text  xpath=//*[@id="mForm:data:status"]
@@ -321,8 +325,9 @@ ${locator.awards[1].complaintPeriod.endDate}
   Click Element                       //*[text()='Зберегти']
   Capture Page Screenshot
   Click Element                       //*[text()='Мої закупівлі']
-  Sleep  25
-  Click Element                       //*[text()='${ARGUMENTS[1]}']//ancestor::*[3]//*[@class='glyphicon glyphicon-pencil']
+  Execute Javascript                 window.scroll(9999,9999)
+  Sleep  10
+  Click Element                       //*[@class='panel panel-default'][1]//*[@class='glyphicon glyphicon-ok-sign']
 
 Задати питання до лоту
   [Arguments]  @{ARGUMENTS}
@@ -457,7 +462,9 @@ ${locator.awards[1].complaintPeriod.endDate}
 
 Отримати Посилання На Аукціон Для Глядача
   [Arguments]  ${user}  ${tenderId}
-  ${AuctionUrl}=   torgua.Отримати посилання на аукціон ${user} ${tenderId}
+  #${AuctionUrl}=   torgua.Отримати посилання на аукціон  ${user}  ${tenderId}
+  torgua.Пошук тендера по ідентифікатору   ${user}   ${tenderId}
+  ${AuctionUrl}=   Get Element Attribute     xpath=(//*[text()='Аукціон'])@href
   [return]  ${AuctionUrl}
 
 Отримати посилання на аукціон для учасника
@@ -556,8 +563,7 @@ ${locator.awards[1].complaintPeriod.endDate}
   sleep  1
   Click Element                       //*[@aria-controls='questions']
   ${questionsTitle}=   Отримати текст із поля і показати на сторінці   questions[0].title
-  ${questionsTitle}=   Convert To Lowercase   ${questionsTitle}
-  [return]  ${questionsTitle.capitalize().split('.')[0] + '.'}
+  [return]  ${questionsTitle}
 
 отримати інформацію про questions[0].description
   ${questionsDescription}=   Отримати текст із поля і показати на сторінці   questions[0].description
@@ -565,7 +571,7 @@ ${locator.awards[1].complaintPeriod.endDate}
 
 отримати інформацію про questions[0].date
   ${questionsDate}=   Отримати текст із поля і показати на сторінці   questions[0].date
-  log  ${questionsDate}
+  ${questionsDate}=   polonex_convertdate    ${questionsDate}
   [return]  ${questionsDate}
 
 отримати інформацію про questions[0].answer
@@ -631,12 +637,14 @@ ${locator.awards[1].complaintPeriod.endDate}
   [return]  ${procuringEntityName}
 
 отримати інформацію про enquiryPeriod.startDate
-  ${procuringEntityName}=   Отримати текст із поля і показати на сторінці     enquiryPeriod.startDate
-  [return]  ${procuringEntityName}
+  ${enquiryPeriodStartDate}=   Отримати текст із поля і показати на сторінці     enquiryPeriod.startDate
+  ${enquiryPeriodStartDate}=   polonex_convertdate    ${enquiryPeriodStartDate}
+  [return]  ${enquiryPeriodStartDate}
 
 отримати інформацію про tenderPeriod.startDate
-  ${procuringEntityName}=   Отримати текст із поля і показати на сторінці     tenderPeriod.startDate
-  [return]  ${procuringEntityName}
+  ${tenderPeriodStartDate}=   Отримати текст із поля і показати на сторінці     tenderPeriod.startDate
+  ${tenderPeriodStartDate}=   polonex_convertdate    ${tenderPeriodStartDate}
+  [return]  ${tenderPeriodStartDate}
 
 отримати інформацію про items[0].deliveryLocation.longitude
   ${deliveryLocationLongitude}=   Отримати текст із поля і показати на сторінці     items[0].deliveryLocation.longitude
