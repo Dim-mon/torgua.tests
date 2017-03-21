@@ -404,7 +404,6 @@ ${locator.awards[1].complaintPeriod.endDate}
   Click Element   xpath=(//*[text()='Редагувати'])[1]
   Input text    xpath=//input[@name='value:amount']        ${ARGUMENTS[3]}
   Click Element   //*[text()='Зберегти']
-  Click Element   xpath=(//*[text()='Активувати'])[1]
 
 Скасувати цінову пропозицію
   [Arguments]  @{ARGUMENTS}
