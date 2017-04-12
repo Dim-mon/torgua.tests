@@ -8,32 +8,13 @@ users:
     Tender_User1:
         api_key:  e9c3ccb8e8124f26941d5f9639a4ebc3
         broker:   Quinta
+    Tender_User2:
+        api_key:  e9c3ccb8e8124f26941d5f9639a4ebc3
+        broker:   Quinta
     Tender_Viewer:
         api_key:  ""
         broker:   Quinta
         browser:  firefox
-    Tendermaster_Owner:
-        broker: tendermaster
-        login: testing.codeit+zak@gmail.com
-        password: test1234
-        homepage: "http://testing.tendermaster.com.ua/"
-        browser: chrome
-    Tendermaster_Provider1:
-        broker: tendermaster
-        login: testing.codeit+pos1@gmail.com
-        password: test1234
-        homepage: "http://testing.tendermaster.com.ua/"
-        browser: chrome
-    Tendermaster_Provider2:
-        broker: tendermaster
-        login: testing.codeit+pos2@gmail.com
-        password: test1234
-        homepage: "http://testing.tendermaster.com.ua/"
-        browser: chrome
-    Tendermaster_Viewer:
-        broker: tendermaster
-        homepage: "http://testing.tendermaster.com.ua/"
-        browser: chrome
     Etender_Owner:
         broker:   Etender
         homepage: "http://bid.uat.e-tender.biz/#/"
@@ -41,29 +22,29 @@ users:
         password: Password1
         browser:  chrome
         position: [0, 0]
-        size:     [800, 800]
+        size:     [1366, 800]
     Etender_Provider1:
         broker:   Etender
         homepage: "http://bid.uat.e-tender.biz/#/"
         login:    st_org
         password: 12345678
         browser:  chrome
-        position: [700, 0]
-        size:     [700, 800]
+        position: [0, 0]
+        size:     [1366, 800]
     Etender_Provider2:
         broker:   Etender
         homepage: "http://bid.uat.e-tender.biz/#/"
         login:    provider2
         password: Qa123456
         browser:  chrome
-        position: [700, 0]
-        size:     [640, 450]
+        position: [0, 0]
+        size:     [1366, 800]
     Etender_Viewer:
         broker:   Etender
         homepage: "http://bid.uat.e-tender.biz/#/"
         browser:  chrome
         position: [0, 0]
-        size:     [640, 450]
+        size:     [1366, 800]
     DZO_Owner:
         broker:   DZO
         homepage: "http://dz2.byustudio.in.ua"
@@ -121,36 +102,6 @@ users:
     ztv_Viewer:
         broker:   ztv
         homepage: "http://ztv.byustudio.in.ua/web/"
-        browser:  firefox
-        position: [0, 0]
-        size:     [1366, 800]
-    brizol_Owner:
-        broker:   brizol
-        homepage: "http://prozorroy.byustudio.in.ua/"
-        login:    prozorroytenderowner@gmail.com
-        password: 123456
-        browser:  firefox
-        position: [0, 0]
-        size:     [1366, 800]
-    brizol_Provider:
-        broker:   brizol
-        homepage: "http://prozorroy.byustudio.in.ua/"
-        login:    prozorroyprovider1@gmail.com
-        password: 123456
-        browser:  firefox
-        position: [0, 0]
-        size:     [1366, 800]
-    brizol_Provider1:
-        broker:   brizol
-        homepage: "http://prozorroy.byustudio.in.ua/"
-        login:    prozorroyprovider2@gmail.com
-        password: 123456
-        browser:  firefox
-        position: [0, 0]
-        size:     [1366, 800]
-    brizol_Viewer:
-        broker:   brizol
-        homepage: "http://prozorroy.byustudio.in.ua/"
         browser:  firefox
         position: [0, 0]
         size:     [1366, 800]
@@ -251,10 +202,10 @@ users:
         size:     [1000, 720]
     PublicPortal_Viewer:
         broker:   PublicPortal
-        homepage: "http://dev.prozorro.org/"
-        browser:  chrome
-        position: [0, 0]
-        size:     [640, 480]
+        homepage: "https://qa23.prozorro.gov.ua/tender/search/"
+        browser:  Chrome
+        position: [450, 0]
+        size:     [1200, 720]
     SmartTender_Viewer:
         broker:   SmartTender
         homepage: "http://test.smarttender.biz/test-tenders?allcat=1"
@@ -435,63 +386,123 @@ users:
         size:     [1366, 800]
     aps_Owner:
         broker:   APStender
-        homepage: "https://e-test.aps-market.com/tender"
-        login:    qa845@meta.ua
-        password: selenide
+        homepage: "https://test.aps-market.com/tender"
+        login:    AS22@i.ua
+        password: 1q2w3e
         browser:  ff
         position: [0, 0]
         size:     [1400, 900]
     aps_Provider:
         broker:   APStender
-        homepage: "https://e-test.aps-market.com/tender"
-        login:    lexins@bigmir.net
-        password: fondriest
+        homepage: "https://test.aps-market.com/tender"
+        login:    emms@meta.ua
+        password: 1q2w3e
         browser:  ff
         position: [0, 0]
         size:     [1400, 900]
     aps_Provider1:
         broker:   APStender
-        homepage: "https://e-test.aps-market.com/tender"
-        login:    qatest55@meta.ua
-        password: selenide
+        homepage: "https://test.aps-market.com/tender"
+        login:    emmo@meta.ua
+        password: 1q2w3e
         browser:  ff
         position: [0, 0]
         size:     [1400, 900]
     aps_Viewer:
         broker:   APStender
-        homepage: "https://e-test.aps-market.com/tender"
+        homepage: "https://test.aps-market.com/tender"
         browser:  ff
         position: [0, 0]
         size:     [1400, 900]
-    upetem_Owner:
-        broker:   upetem
-        homepage: "http://dz.upetem.com.ua/user/purchase"
-        login:    aaa@mail.ru
-        password: '11111111'
+    alltenders_Owner:
+        broker:   alltenders
+        homepage: 'https://prozorro.shadowy.eu/?mode=test&notification=off'
+        login:    butov@mail.ru
+        password: 111
+        browser:  chrome
+        position: [0, 0]
+        size:     [1210, 800]
+    alltenders_Provider1:
+        broker:   alltenders
+        homepage: 'https://prozorro.shadowy.eu/?mode=test&notification=off'
+        login:    k2676849@mvrht.com
+        password: 111
+        browser:  chrome
+        position: [0, 0]
+        size:     [1210, 800]
+    alltenders_Provider2:
+        broker:   alltenders
+        homepage: 'https://prozorro.shadowy.eu/?mode=test&notification=off'
+        login:    k2046243@mvrht.com
+        password: 111
+        browser:  chrome
+        position: [0, 0]
+        size:     [1210, 800]
+    alltenders_Viewer:
+        broker:   alltenders
+        homepage: "https://prozorro.shadowy.eu/?mode=test&notification=off"
+        browser:  chrome
+        position: [0, 0]
+        size:     [1210, 800]
+    kapitalist_Owner:
+        broker:   Kapitalist
+        homepage: "http://185.9.41.105/Kapital-Ist/"
+        login:    qa_test@binka.me
+        password: Password1-
+        browser:  chrome
+        position: [0, 0]
+        size:     [1366, 800]
+    kapitalist_Provider:
+        broker:   Kapitalist
+        homepage: "http://185.9.41.105/Kapital-Ist/"
+        login:    provider_user@binka.me
+        password: Password1-
+        browser:  chrome
+        position: [0, 0]
+        size:     [1366, 800]
+    kapitalist_Provider1:
+        broker:   Kapitalist
+        homepage: "http://185.9.41.105/Kapital-Ist/"
+        login:    provider1_user@binka.me
+        password: Password1-
+        browser:  chrome
+        position: [0, 0]
+        size:     [1366, 800]
+    kapitalist_Viewer:
+        broker:   Kapitalist
+        homepage: "http://185.9.41.105/Kapital-Ist/"
+        browser:  chrome
+        position: [0, 0]
+        size:     [1366, 800]
+    pzo_Owner:
+        broker:   pzo
+        homepage: "http://dev.pzo.com.ua/user/tenders"
+        login:    slam_ua@mail.ru
+        password: 'qwe123qwe'
         browser:  chrome
         position: [0, 0]
         size:     [1000, 500]
-    upetem_Provider:
-        broker:   upetem
-        homepage: "http://dz.upetem.com.ua/user/purchase"
-        login:    sss@mail.ru
-        password: '11111111'
+    pzo_Provider:
+        broker:   pzo
+        homepage: "http://dev.pzo.com.ua/user/bids"
+        login:    nik.urgant@mail.ru
+        password: 'qwe123qwe'
         browser:  chrome
         position: [0, 0]
         size:     [1000, 500]
-    upetem_Provider1:
-        broker:   upetem
-        homepage: "http://dz.upetem.com.ua/user/purchase"
-        login:    ttr@mail.ru
-        password: '11111111'
+    pzo_Provider1:
+        broker:   pzo
+        homepage: "http://dev.pzo.com.ua/user/bids"
+        login:    maks.sotnikov.62@mail.ru
+        password: 'qwe123qwe'
         browser:  chrome
         position: [0, 0]
         size:     [1000, 500]
-    upetem_Viewer:
-        broker:   upetem
-        homepage: "http://dz.upetem.com.ua/user/purchase"
-        login:    fefew@mail.ei
-        password: '11111111'
+    pzo_Viewer:
+        broker:   pzo
+        homepage: "http://dev.pzo.com.ua/user/tenders"
+        login:    belitskiy.vadim@mail.ru
+        password: 'qwe123qwe'
         browser:  chrome
         position: [0, 0]
         size:     [1000, 500]
