@@ -475,12 +475,13 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     [return]  ${return_value}
 Отримати інформацію із запитання
     [Arguments]  @{ARGUMENTS}
+    debug
     ${return_value}=  run keyword  Отримати інформацію про questions ${ARGUMENTS[3]}
     [return]  ${return_value}
 Отримати інформацію із документа
     [Arguments]  @{ARGUMENTS}
     Log to console   ${ARGUMENTS}
-    ${return_value}=  run keyword  Отримати Інформацію Про document ${ARGUMENTS[1]}
+    ${return_value}=  run keyword  Отримати Інформацію Про document ${ARGUMENTS[3]}
     [return]  ${return_value}
 
 Отримати інформацію із пропозиції
@@ -594,18 +595,22 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     [return]    ${additionalClassificationsScheme}
 
 Отримати інформацію про questions title
+    Debug
     ${questionsTitle}=     Отримати текст із поля і показати на сторінці         questions[0].title
     [return]    ${questionsTitle}
 
 Отримати інформацію про questions[0].title
+    Debug
     ${questionsTitle}=     Отримати текст із поля і показати на сторінці         questions[0].title
     [return]    ${questionsTitle}
 
 отримати інформацію про questions description
+    Debug
     ${questionsDescription}=     Отримати текст із поля і показати на сторінці         questions[0].description
     [return]    ${questionsDescription}
 
 отримати інформацію про questions date
+    Debug
     ${questionsDate}=     Отримати текст із поля і показати на сторінці         questions[0].date
     ${questionsDate}=     convert_date_for_compare         ${questionsDate}
     [return]    ${questionsDate}
