@@ -360,7 +360,6 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     
     ${title}=                Get From Dictionary    ${ARGUMENTS[2].data}    title
     ${description}=    Get From Dictionary    ${ARGUMENTS[2].data}    description
-
     Selenium2Library.Switch Browser        ${ARGUMENTS[0]}
     torgua.Пошук тендера по ідентифікатору        ${ARGUMENTS[0]}     ${ARGUMENTS[1]}
     Click Element                                             xpath=//*[text()='Обговорення ']
@@ -397,6 +396,18 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     Input text        xpath=//input[@name='value:amount']                ${ARGUMENTS[3]}
     Click Element     //*[text()='Зберегти']
 
+Відповісти на запитання
+    [Arguments]    @{ARGUMENTS}
+    Log to console  ${ARGUMENTS}
+    ${answer}=         Get From Dictionary    ${ARGUMENTS[3].data}    answer
+    torgua.Пошук тендера по ідентифікатору        ${ARGUMENTS[0]}     ${ARGUMENTS[1]}
+    Click Element                                                 xpath=//*[text()='Обговорення ']
+    Sleep         4
+    #Click Element                                                 xpath=//a[contains(@id, 'add_answer_btn_0')]
+    #Sleep         4
+    Input Text                                                        xpath=//*[@class='media well'][1]//*[@name='answer']                ${answer}
+    Click Element                                                 xpath=//*[@class='media well'][1]//*[text()='Відповісти']
+    
 Скасувати цінову пропозицію
     [Arguments]    @{ARGUMENTS}
     [Documentation]
@@ -475,12 +486,13 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
 Отримати інформацію із пропозиції
     [Arguments]  @{ARGUMENTS}
     Log to console   ${ARGUMENTS}
-    ${return_value}=  run keyword  Отримати Інформацію Про document ${ARGUMENTS[2]}
+    ${return_value}=  run keyword  Отримати Інформацію Про ${ARGUMENTS[2]}
     [return]  ${return_value}
 Отримати документ
     [Arguments]  @{ARGUMENTS}
     Log to console   ${ARGUMENTS}
-    download_file_from_url  ${ARGUMENTS[1]}  ${ARGUMENTS[2]}
+    ${docUrl}=     Get Element Attribute         xpath=(//*[@style='padding: 5px 0; display: block; border-bottom: 1px solid #fff;'])@href
+    [return]  torgua_service.Download File From Url  ${docUrl}  ${ARGUMENTS[1]}
 Отримати Посилання На Аукціон Для Глядача
     [Arguments]    ${user}    ${tenderId}
     #${AuctionUrl}=     torgua.Отримати посилання на аукціон    ${user}    ${tenderId}
@@ -520,6 +532,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     [return]    ${return_value}
 
 Отримати Інформацію Про Title
+
     ${title}=     Отримати текст із поля і показати на сторінці     title
     [return]    ${title}
 отримати інформацію про AuctionUrl
@@ -606,7 +619,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     [return]    ${questionsAnswer}
 
 отримати інформацію про items deliveryDate.startDate
-    ${deliveryDateStartDate}=     Отримати текст із поля і показати на сторінці     items[0].deliveryDate.startDate
+    ${deliveryDateStartDate}=     Отримати текст із поля і показати на сторінці         items[0].deliveryDate.startDate
     ${deliveryDateStartDate}=     parse_date        ${deliveryDateStartDate}
     [return]    ${deliveryDateStartDate}
 
