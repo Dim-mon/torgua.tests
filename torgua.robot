@@ -183,7 +183,6 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
 
 
     Input text                                                    //*[@name='items:description[]']        ${items_description}
-    Log to console  ${cpv_id}
     Click Element                                             //*[@name='items:classification:id[]']
     Sleep    2
         Input text                                                 //*[@name='cpv_search']        ${cpv_description}
@@ -195,7 +194,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
 #        Input text                                                    //*[@name='dkpp_search']        ${dkpp_description}
 #        Sleep    2
 #        Click Element                                             //*[@value='${dkpp_id}']
-        #Debug
+        
         #Click Element                                             //*[@class='ac_i form-control dkpp_list']
         #Input text                                                    //*[@name='items:additionalClassifications:description[0][]']        ${dkpp_description}
 
@@ -204,14 +203,12 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
         Sleep    2
         Click Element                                            //*[@name='items:unit:code[]']/option[@value='${items_unit_code}']
         Sleep    1
-        #Debug
     Input text                                                    //*[@name='items:quantity[]']        ${items_unit_quantity}
 
     Input text                                                    //*[@name='items:deliveryAddress:postalCode[]']        ${items_deliveryAddress_postalCode}
     Input text                                                    //*[@name='items:deliveryAddress:countryName[]']        ${items_deliveryAddress_countryName}
     Input text                                                    //*[@name='items:deliveryAddress:region[]']        ${items_deliveryAddress_region}
     Input text                                                    //*[@name='items:deliveryAddress:locality[]']        ${items_deliveryAddress_locality}
-    #Debug
     Input text                                                    //*[@name='items:deliveryAddress:streetAddress[]']     ${items_deliveryAddress_streetAddress}
 
     Input text                                                    //*[@name='items:deliveryLocation:latitude[]']        ${items_deliveryLocation_latitude}
@@ -220,7 +217,6 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     Input text                                                    //*[@name='items:deliveryDate:endDate[]']        ${items_items_deliveryDate_endDate}
     #333Run Keyword If     '${procurementMethodType}' == ''     Підготувати інформацію для belowThreshold @{ARGUMENTS}
     #Run Keyword If     '${procurementMethodType}' == 'reporting'     Підготувати інформацію для reporting ${ARGUMENTS}
-    #debug
     Click Element                                             //*[text()='Зберегти']
     Click Element                                             //*[@class='alert alert-info'][last()]//a[@data-original-title="Акцептувати чернетку"]
     Execute Javascript                                 window.scroll(9999,9999)
@@ -239,6 +235,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     ...            ${ARGUMENTS[2]} ==    ${TENDER_UAID}
     Selenium2Library.Switch Browser        ${ARGUMENTS[0]}
     Wait Until Page Contains Element    id=content
+    Click Element                                             //*[@class="glyphicon glyphicon-user"]
     Click Element                                             //*[text()='Мої закупівлі']
     Execute Javascript                                 window.scroll(9999,9999)
     Sleep    10
@@ -250,6 +247,9 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     Execute Javascript                                 window.scroll(9999,9999)
     Sleep    20
     Click Element                                             //*[@class='panel panel-default'][1]//*[@class='glyphicon glyphicon-ok-sign']
+    Sleep  5
+    torgua.Пошук тендера по ідентифікатору     ${ARGUMENTS[0]}     ${ARGUMENTS[2]}
+    Sleep  5
 
 Завантажити документ до тендеру
     [Arguments]     ${file}
@@ -310,24 +310,25 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     Selenium2Library.Switch Browser         ${ARGUMENTS[0]}
 
     Wait Until Page Contains Element    id=content
-
     Click Element                                             //*[@class='log']
     Click Element                                             //*[text()='Мої закупівлі']
     Execute Javascript                                 window.scroll(9999,9999)
-    Sleep    15
+    Sleep  10
     Click Element                                             //*[@id='tendersList']//*[text()='${ARGUMENTS[1]}']//ancestor::*[3]//*[@class='glyphicon glyphicon-pencil']
 
     #${tender_status}=    Get Text    xpath=//*[@id="mForm:data:status"]
-    ${new_description}=    Convert To String     'Новое описания тендера'
+    ${new_date}=    Convert Date To String     ${ARGUMENTS[3]}
     #Run Keyword If    '${tender_status}' == 'Період уточнень'    Input text    xpath=//*[@id="mForm:data:desc"]    ${new_description}
 
-    Input text                                                    //textarea[@name='description']         ${new_description}
+    Input text                                                    //*[@name='tenderPeriod:endDate']         ${new_date}
     Click Element                                             //*[text()='Зберегти']
     Capture Page Screenshot
     Click Element                                             //*[text()='Мої закупівлі']
     Execute Javascript                                 window.scroll(9999,9999)
-    Sleep    10
     Click Element                                             //*[@class='panel panel-default'][1]//*[@class='glyphicon glyphicon-ok-sign']
+    Sleep  15
+    torgua.Пошук тендера по ідентифікатору     ${ARGUMENTS[0]}     ${ARGUMENTS[1]}
+    Sleep  5
 
 Задати питання до лоту
     [Arguments]    @{ARGUMENTS}
@@ -357,11 +358,11 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
 
 Задати запитання на тендер
     [Arguments]    @{ARGUMENTS}
-    
     ${title}=                Get From Dictionary    ${ARGUMENTS[2].data}    title
     ${description}=    Get From Dictionary    ${ARGUMENTS[2].data}    description
     Selenium2Library.Switch Browser        ${ARGUMENTS[0]}
     torgua.Пошук тендера по ідентифікатору        ${ARGUMENTS[0]}     ${ARGUMENTS[1]}
+    Sleep   10
     Click Element                                             xpath=//*[text()='Обговорення ']
     Input text                                                    xpath=//*[@name='title']                                 ${title}
     Input text                                                    xpath=//textarea[@name='description']                                 ${description}
@@ -398,14 +399,9 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
 
 Відповісти на запитання
     [Arguments]    @{ARGUMENTS}
-    Log to console  ${ARGUMENTS}
-    ${answer}=         Get From Dictionary    ${ARGUMENTS[3].data}    answer
     torgua.Пошук тендера по ідентифікатору        ${ARGUMENTS[0]}     ${ARGUMENTS[1]}
     Click Element                                                 xpath=//*[text()='Обговорення ']
-    Sleep         4
-    #Click Element                                                 xpath=//a[contains(@id, 'add_answer_btn_0')]
-    #Sleep         4
-    Input Text                                                        xpath=//*[@class='media well'][1]//*[@name='answer']                ${answer}
+    Input Text   xpath=//*[@placeholder="Введіть відповідь на запитання"]          ${ARGUMENTS[2].data.answer}
     Click Element                                                 xpath=//*[@class='media well'][1]//*[text()='Відповісти']
     
 Скасувати цінову пропозицію
@@ -428,6 +424,9 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     Click Element     //*[text()=' Додати документ']
     Choose File                                 //*[@name='documents:file[]']                    ${ARGUMENTS[1]}
     Click Element     //*[text()='Зберегти']
+    Sleep  5
+    torgua.Пошук тендера по ідентифікатору     ${ARGUMENTS[0]}     ${ARGUMENTS[1]}
+    Sleep  5
     #Click Element     xpath=(//*[text()='Активувати'])[1]
     #sleep    10
 
@@ -475,23 +474,20 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     [return]  ${return_value}
 Отримати інформацію із запитання
     [Arguments]  @{ARGUMENTS}
-    
-    ${return_value}=  run keyword  Отримати інформацію про questions ${ARGUMENTS[3]}
+    torgua.Пошук тендера по ідентифікатору        ${ARGUMENTS[0]}     ${ARGUMENTS[1]}
+    ${return_value}=  run keyword  Отримати інформацію про ${ARGUMENTS[3]}
     [return]  ${return_value}
 Отримати інформацію із документа
     [Arguments]  @{ARGUMENTS}
-    Log to console   ${ARGUMENTS}
     ${return_value}=  run keyword  Отримати Інформацію Про document ${ARGUMENTS[3]}
     [return]  ${return_value}
 
 Отримати інформацію із пропозиції
     [Arguments]  @{ARGUMENTS}
-    Log to console   ${ARGUMENTS}
     ${return_value}=  run keyword  Отримати Інформацію Про ${ARGUMENTS[2]}
     [return]  ${return_value}
 Отримати документ
     [Arguments]  @{ARGUMENTS}
-    Log to console   ${ARGUMENTS}
     ${docUrl}=     Get Element Attribute         xpath=(//*[@style='padding: 5px 0; display: block; border-bottom: 1px solid #fff;'])@href
     [return]  torgua_service.Download File From Url  ${docUrl}  ${ARGUMENTS[1]}
 Отримати Посилання На Аукціон Для Глядача
@@ -550,8 +546,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
 
 отримати інформацію про value.amount
     ${valueAmount}=     Отримати текст із поля і показати на сторінці     value.amount
-    ${valueAmount}=    Replace String    ${valueAmount}    ,    .
-    ${valueAmount}=    Convert To Number    ${valueAmount}
+    ${valueAmount}=     Convert To Number     ${valueAmount.split(' ')[0]}
     [return]    ${valueAmount}
 
 отримати інформацію про minimalStep.amount
@@ -570,7 +565,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     [return]    ${enquiryPeriodEndDate}
 
 отримати інформацію про tenderPeriod.endDate
-    ${tenderPeriodEndDate}=     Отримати текст із поля і показати на сторінці     tenderPeriod.endDate
+    ${tenderPeriodEndDate}=     Отримати текст із поля і показати на сторінці         tenderPeriod.endDate
     ${tenderPeriodEndDate}=     parse_date        ${tenderPeriodEndDate}
     [return]    ${tenderPeriodEndDate}
 
@@ -595,12 +590,10 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     [return]    ${additionalClassificationsScheme}
 
 Отримати інформацію про questions title
-    
     ${questionsTitle}=     Отримати текст із поля і показати на сторінці         questions[0].title
     [return]    ${questionsTitle}
 
 Отримати інформацію про questions[0].title
-    
     ${questionsTitle}=     Отримати текст із поля і показати на сторінці         questions[0].title
     [return]    ${questionsTitle}
 
@@ -616,9 +609,6 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     [return]    ${questionsDate}
 
 отримати інформацію про questions answer
-    sleep    1
-    #Click Element                                             xpath=//a[@class='reverse tenderLink']
-    #sleep    1
     Click Element                                             xpath=//*[text() = 'Обговорення ']
     ${questionsAnswer}=     Отримати текст із поля і показати на сторінці         questions[0].answer
     [return]    ${questionsAnswer}
@@ -688,12 +678,12 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
 
 отримати інформацію про items deliveryLocation.longitude
     ${deliveryLocationLongitude}=     Отримати текст із поля і показати на сторінці         items[0].deliveryLocation.longitude
-    ${deliveryLocationLongitude}=   string_to_float   ${deliveryLocationLongitude}
+    ${deliveryLocationLongitude}=   Convert to number   ${deliveryLocationLongitude}
     [return]    ${deliveryLocationLongitude}
 
 отримати інформацію про items deliveryLocation.latitude
     ${deliveryLocationLatitude}=     Отримати текст із поля і показати на сторінці         items[0].deliveryLocation.latitude
-    ${deliveryLocationLatitude}=   string_to_float   ${deliveryLocationLatitude}
+    ${deliveryLocationLatitude}=   Convert to number   ${deliveryLocationLatitude}
     [return]    ${deliveryLocationLatitude}
 
 отримати інформацію про items deliveryAddress.postalCode

@@ -41,3 +41,6 @@ def download_file_from_url(url, path_to_save_file):
     f.write(urllib.urlopen(url).read())
     f.close()
     return os.path.basename(f.name)
+
+def Format(val):
+    return '{:2f}'.format(val)
