@@ -36,11 +36,5 @@ def convert_item_date_to_string(date):
     date = date.strftime("%d.%m.%Y")
     return date
 
-def download_file_from_url(url, path_to_save_file):
-    f = open(path_to_save_file, 'wb')
-    f.write(urllib.urlopen(url).read())
-    f.close()
-    return os.path.basename(f.name)
-
 def Format(val):
     return '{:2f}'.format(val)
