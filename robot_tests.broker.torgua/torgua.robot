@@ -449,7 +449,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     Selenium2Library.Switch Browser         ${ARGUMENTS[0]}
     Click Element     //*[@class='log']
     Click Element     //*[text()='Мої пропозиції']
-    Click Element     xpath=(//*[text()='Редагувати'])[1
+    Click Element     xpath=(//*[text()='Редагувати'])[1]
     Choose File                                 //*[@name='exi_documents:file[]']                    ${ARGUMENTS[2]}
     Click Element     //*[text()='Зберегти']
     #Click Element     xpath=(//*[text()='Активувати'])[1]
