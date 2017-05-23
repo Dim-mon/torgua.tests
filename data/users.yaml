@@ -533,8 +533,8 @@ users:
     torgua_Viewer:
         broker:   torgua
         homepage: "http://torgua.com"
-        login:    trl86@ya.ru
-        password: q1w2e3r4t5y6
+        login:    Novikov.M@bidon-tech.com
+        password: 8YdsSHB5
         browser:  firefox
         position: [0, 0]
         size:     [1366, 1000]
