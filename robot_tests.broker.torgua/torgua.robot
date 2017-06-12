@@ -187,6 +187,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
 
     Input text                                                    //*[@name='items:description[]']        ${items_description}
     Click Element                                             //*[@name='items:classification:id[]']
+    #Debug
     Sleep    2
         Input text                                                 //*[@name='cpv_search']        ${cpv_description}
         Sleep    2
@@ -368,6 +369,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     Input text                                                    xpath=//*[@name='title']                                 ${title}
     Input text                                                    xpath=//textarea[@name='description']                                 ${description}
     Click Element                                             xpath=//*[@name='add-question']
+    torgua.Пошук тендера по ідентифікатору        ${ARGUMENTS[0]}     ${ARGUMENTS[1]}
 
 Подати цінову пропозицію
     [Arguments]    @{ARGUMENTS}
@@ -602,7 +604,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
 
 отримати інформацію про items classification.scheme
     #${classificationScheme}=     Отримати текст із поля і показати на сторінці     items[0].classification.scheme
-    [return]    CPV
+    [return]    ДК021
 
 отримати інформацію про items additionalClassifications[0].id
     ${additionalClassificationsId}=     Отримати текст із поля і показати на сторінці         items[0].additionalClassifications[0].id

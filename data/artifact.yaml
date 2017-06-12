@@ -1,10 +1,10 @@
-access_token: d5e89806558743e6b1a65ad12c231e10
+access_token: 0041b273568d404cb054b55d7b4f3bbe
 api_version: '2.3'
-last_modification_date: '2017-05-23 15:57:02.020883'
+last_modification_date: '2017-06-12 12:17:04.341345'
 mode: belowThreshold
-provider1_access_token: ''
-provider_access_token: a287841562484fe190cbe0c3a1ea731c
-tender_id: 0a04c415547e40f5aef40e3d3f4779df
+provider1_access_token: 1c312558a8ca4aeb9825b5f9c083ba1f
+provider_access_token: 3c42cd8263724e25826c6459ada3af75
+tender_id: 8bdf179bcb2e48d1b565d17580a8cda7
 tender_owner: Quinta
-tender_owner_access_token: d5e89806558743e6b1a65ad12c231e10
-tender_uaid: UA-2017-05-23-000090-1
+tender_owner_access_token: 0041b273568d404cb054b55d7b4f3bbe
+tender_uaid: UA-2017-06-12-000029

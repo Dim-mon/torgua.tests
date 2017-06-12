@@ -316,4 +316,4 @@ torgua:
         provider:       torgua_Provider
         provider1:      torgua_Provider1
         viewer:         torgua_Viewer
-    timeout_on_wait: 100
+    timeout_on_wait: 240
