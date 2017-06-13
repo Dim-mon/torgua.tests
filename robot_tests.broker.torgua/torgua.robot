@@ -515,9 +515,10 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     [return]  ${return_value}
 Отримати документ
     [Arguments]  @{ARGUMENTS}
+    ${docName}=    Get Text         xpath=(//*[@class='doc_title'])
     ${docUrl}=     Get Element Attribute         xpath=(//*[@style='padding: 5px 0; display: block; border-bottom: 1px solid #fff;'])@href
-    #debug
-    [return]  Download File From Url  ${docUrl}  ${ARGUMENTS[2]}
+    Download File From Url  ${docUrl}  ${OUTPUT_DIR}${/}${docName}
+    [return]  ${docName}
 Отримати Посилання На Аукціон Для Глядача
     [Arguments]    ${user}    ${tenderId}
     #${AuctionUrl}=     torgua.Отримати посилання на аукціон    ${user}    ${tenderId}
