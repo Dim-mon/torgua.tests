@@ -91,7 +91,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
 
 
     ${value_amount}=                Get From Dictionary     ${ARGUMENTS[1].data.value}                 amount
-    ${value_amount}=                            Convert To String         ${value_amount}
+    ${value_amount}=                            Format         ${value_amount}
 
     ${value_currency}=                Get From Dictionary     ${ARGUMENTS[1].data.value}                 currency
     ${minimalStep_amount}=         Get From Dictionary     ${ARGUMENTS[1].data.minimalStep}     amount
@@ -118,9 +118,9 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     ${items_deliveryAddress_streetAddress}=     Get From Dictionary     ${items[0].deliveryAddress}                 streetAddress
 
     ${items_deliveryLocation_latitude}=     Get From Dictionary     ${items[0].deliveryLocation}                 latitude
-    ${items_deliveryLocation_latitude}=         Convert To String         ${items_deliveryLocation_latitude}
+    ${items_deliveryLocation_latitude}=         String To Float         ${items_deliveryLocation_latitude}
     ${items_deliveryLocation_longitude}=     Get From Dictionary     ${items[0].deliveryLocation}                 longitude
-    ${items_deliveryLocation_longitude}=         Convert To String         ${items_deliveryLocation_longitude}
+    ${items_deliveryLocation_longitude}=         String To Float         ${items_deliveryLocation_longitude}
 
     ${enquiryPeriod_startDate}=                Get From Dictionary        ${ARGUMENTS[1].data.enquiryPeriod}                 startDate
     ${enquiryPeriod_startDate}=                Convert Date To String     ${enquiryPeriod_startDate}
