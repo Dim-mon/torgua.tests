@@ -576,12 +576,14 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
 отримати інформацію про value.amount
     #debug
     ${valueAmount}=     Отримати текст із поля і показати на сторінці     value.amount
-    ${valueAmount}=     Convert To Number     ${valueAmount.split(' ')[0]}
+    #debug
+    ${valueAmount}=      Convert To Number     ${valueAmount.split(' ')[0]}
     [return]    ${valueAmount}
 
 отримати інформацію про minimalStep.amount
     ${minimalStepAmount}=     Отримати текст із поля і показати на сторінці     minimalStep.amount
-    ${minimalStepAmount}=     Convert To Number     ${minimalStepAmount.split(' ')[0]}
+    #debug
+    ${minimalStepAmount}=      Convert To Number     ${minimalStepAmount.split(' ')[0]}
     [return]    ${minimalStepAmount}
 
 Отримати інформацію про awards[1].complaintPeriod.endDate
@@ -703,17 +705,16 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
 отримати інформацію про tenderPeriod.startDate
     ${tenderPeriodStartDate}=     Отримати текст із поля і показати на сторінці         tenderPeriod.startDate
     ${tenderPeriodStartDate}=     parse_date        ${tenderPeriodStartDate}
-    
     [return]    ${tenderPeriodStartDate}
 
-отримати інформацію про items deliveryLocation.longitude
+отримати інформацію про items deliveryLocation.longitude    
     ${deliveryLocationLongitude}=     Отримати текст із поля і показати на сторінці         items[0].deliveryLocation.longitude
-    ${deliveryLocationLongitude}=   Convert to number   ${deliveryLocationLongitude}
+    ${deliveryLocationLongitude}=    Convert To Number   ${deliveryLocationLongitude}
     [return]    ${deliveryLocationLongitude}
 
 отримати інформацію про items deliveryLocation.latitude
     ${deliveryLocationLatitude}=     Отримати текст із поля і показати на сторінці         items[0].deliveryLocation.latitude
-    ${deliveryLocationLatitude}=   Convert to number   ${deliveryLocationLatitude}
+    ${deliveryLocationLatitude}=    Convert To Number   ${deliveryLocationLatitude}
     [return]    ${deliveryLocationLatitude}
 
 отримати інформацію про items deliveryAddress.postalCode

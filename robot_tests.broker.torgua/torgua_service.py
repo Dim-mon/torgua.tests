@@ -7,8 +7,7 @@ import pytz
 TZ = pytz.timezone('Europe/Kiev')
 
 def string_to_float(string):
-    return float(string)
-
+    return float(string, '.2f')
 
 def parse_date(date_str):
     date_str = datetime.strptime(date_str, "%d.%m.%Y %H:%M")
