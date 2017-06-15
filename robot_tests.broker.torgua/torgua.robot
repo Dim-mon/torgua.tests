@@ -219,10 +219,8 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     Input text                                                    //*[@name='items:deliveryAddress:region[]']        ${items_deliveryAddress_region}
     Input text                                                    //*[@name='items:deliveryAddress:locality[]']        ${items_deliveryAddress_locality}
     Input text                                                    //*[@name='items:deliveryAddress:streetAddress[]']     ${items_deliveryAddress_streetAddress}
-#    Input text                                                    //*[@name='items:deliveryLocation:latitude[]']        
-#${items_deliveryLocation_latitude}
-#    Input text                                                    //*[@name='items:deliveryLocation:longitude[]']        
-#${items_deliveryLocation_longitude}
+    Input text                                                    //*[@name='items:deliveryLocation:latitude[]']        ${items_deliveryLocation_latitude}
+    Input text                                                    //*[@name='items:deliveryLocation:longitude[]']        ${items_deliveryLocation_longitude}
 
     Input text                                                    //*[@name='items:deliveryDate:startDate[]']        ${items_items_deliveryDate_startDate}
     Input text                                                    //*[@name='items:deliveryDate:endDate[]']        ${items_items_deliveryDate_endDate}
