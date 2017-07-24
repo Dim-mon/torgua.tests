@@ -245,12 +245,12 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     ...            ${ARGUMENTS[2]} ==    ${TENDER_UAID}
     Selenium2Library.Switch Browser        ${ARGUMENTS[0]}
     Wait Until Page Contains Element    id=content
-    #debug
+    debug
     Click Element                                             //*[@class="glyphicon glyphicon-user"]
     Click Element                                             //*[text()='Мої закупівлі']
     Execute Javascript                                 window.scroll(9999,9999)
     Sleep    10
-    Click Element                                             //*[@class='panel panel-default'][1]//*[@class='col-lg-4 text-right']//*[@class='glyphicon glyphicon-pencil']
+    Click Element                                             //*[text()='${ARGUMENTS[2]}']/../../..//*[@class='col-lg-4 text-right']//a[@data-original-title='Редагувати']
     Click Element                                             //*[text()='Додати файл']
     Завантажити документ до тендеру     ${ARGUMENTS[1]}
     Input Text                                                    //*[@name='document:description[]']         Test text
@@ -328,6 +328,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     Capture Page Screenshot
     Click Element                                             //*[text()='Мої закупівлі']
     Execute Javascript                                 window.scroll(9999,9999)
+    Sleep  15
     Click Element                                             //*[@class='panel panel-default'][1]//*[@class='glyphicon glyphicon-ok-sign']
     Sleep  15
     torgua.Пошук тендера по ідентифікатору     ${ARGUMENTS[0]}     ${ARGUMENTS[1]}
