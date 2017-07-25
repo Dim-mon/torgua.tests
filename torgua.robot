@@ -230,11 +230,13 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     Click Element                                             //*[text()='Зберегти']
     Click Element                                             //*[@class='alert alert-info'][last()]//a[@data-original-title="Акцептувати чернетку"]
     Execute Javascript                                 window.scroll(9999,9999)
-    Sleep    10
-    Click Element                                             //*[@class='panel panel-default'][1]//*[@class='glyphicon glyphicon-ok-sign']
+    Sleep    20
+
+    Click Element                                             //*[text()='${ARGUMENTS[1]['data']['title']}']/../../..//*[@class='glyphicon glyphicon-ok-sign']
     Execute Javascript                                 window.scroll(9999,9999)
     Sleep    10
-    ${tender_UAid}=    Get Text                     //*[@class='panel panel-default'][1]//*[@class='label label-primary']
+
+    ${tender_UAid}=    Get Text                     //*[text()='${ARGUMENTS[1]['data']['title']}']/..//*[@class='label label-primary']
     [return]    ${tender_UAid}
 
 Завантажити документ
@@ -319,7 +321,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     ...            ${ARGUMENTS[0]} =    username
     ...            ${ARGUMENTS[1]} =    ${TENDER_UAID}
     Selenium2Library.Switch Browser         ${ARGUMENTS[0]}
-    
+    debug
     torgua.Пошук тендера по ідентифікатору в кабінеті     ${ARGUMENTS[0]}     ${ARGUMENTS[1]}
     ${value}=  Run keyword if  '${ARGUMENTS[2]}' == 'tenderPeriod.endDate'  Convert Date To String     ${ARGUMENTS[3]}   ELSE   CONVERT TO STRING    ${ARGUMENTS[3]}
     ${prop}=  Evaluate  '${ARGUMENTS[2]}'.replace(".", ":")
