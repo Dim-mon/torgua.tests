@@ -234,7 +234,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
 
     Click Element                                             //*[text()='${ARGUMENTS[1]['data']['title']}']/../../..//*[@class='glyphicon glyphicon-ok-sign']
     Execute Javascript                                 window.scroll(9999,9999)
-    Sleep    10
+    Sleep    30
 
     ${tender_UAid}=    Get Text                     //*[text()='${ARGUMENTS[1]['data']['title']}']/..//*[@class='label label-primary']
     [return]    ${tender_UAid}
@@ -247,20 +247,21 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     ...            ${ARGUMENTS[2]} ==    ${TENDER_UAID}
     Selenium2Library.Switch Browser        ${ARGUMENTS[0]}
     Wait Until Page Contains Element    id=content
-    debug
+    #debug
     Click Element                                             //*[@class="glyphicon glyphicon-user"]
     Click Element                                             //*[text()='Мої закупівлі']
     Execute Javascript                                 window.scroll(9999,9999)
-    Sleep    10
+    Sleep    30
     Click Element                                             //*[text()='${ARGUMENTS[2]}']/../../..//*[@class='col-lg-4 text-right']//a[@data-original-title='Редагувати']
     Click Element                                             //*[text()='Додати файл']
     Завантажити документ до тендеру     ${ARGUMENTS[1]}
     Input Text                                                    //*[@name='document:description[]']         Test text
+    #debug
     Click Element                                             //*[text()='Зберегти']
     Execute Javascript                                 window.scroll(9999,9999)
     Sleep    20
     Click Element                                             //*[@class='panel panel-default'][1]//*[@class='glyphicon glyphicon-ok-sign']
-    Sleep  5
+    Sleep  10
     torgua.Пошук тендера по ідентифікатору     ${ARGUMENTS[0]}     ${ARGUMENTS[2]}
     Sleep  5
 
@@ -321,7 +322,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     ...            ${ARGUMENTS[0]} =    username
     ...            ${ARGUMENTS[1]} =    ${TENDER_UAID}
     Selenium2Library.Switch Browser         ${ARGUMENTS[0]}
-    debug
+#    debug
     torgua.Пошук тендера по ідентифікатору в кабінеті     ${ARGUMENTS[0]}     ${ARGUMENTS[1]}
     ${value}=  Run keyword if  '${ARGUMENTS[2]}' == 'tenderPeriod.endDate'  Convert Date To String     ${ARGUMENTS[3]}   ELSE   CONVERT TO STRING    ${ARGUMENTS[3]}
     ${prop}=  Evaluate  '${ARGUMENTS[2]}'.replace(".", ":")
@@ -486,7 +487,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     Click Element                                             //*[text()='Мої закупівлі']
     Click Element                                             //*[@id="tendertab"]
     Execute Javascript                                 window.scroll(9999,9999)
-    Sleep  10
+    Sleep  20
     Click Element                                             //*[@id='tendersList']//*[text()='${ARGUMENTS[1]}']//ancestor::*[3]//*[@class='glyphicon glyphicon-pencil']
 
 Отримати інформацію із тендера
@@ -720,6 +721,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     ${deliveryLocationLatitude}=     Отримати текст із поля і показати на сторінці         items[0].deliveryLocation.latitude
     ${deliveryLocationLatitude}=    Convert To Number   ${deliveryLocationLatitude}
     [return]    ${deliveryLocationLatitude}
+
 
 отримати інформацію про items deliveryAddress.postalCode
     ${deliveryAddressPostalCode}=     Отримати текст із поля і показати на сторінці         items[0].deliveryAddress.postalCode
