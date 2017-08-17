@@ -89,6 +89,60 @@ DZO:
         provider1:      DZO_Provider1
         viewer:         DZO_Viewer
     timeout_on_wait: 300
+b25h8:
+    intervals:
+        default:
+            accelerator: 720
+            enquiry: [0, 50]
+            tender:  [0, 15]
+        belowThreshold:
+            accelerator: 60
+            enquiry: [0, 60]
+            tender:  [0, 15]
+        openua:
+            accelerator: 720
+            tender:  [0, 70]
+        openeu:
+            accelerator: 720
+            tender:  [0, 61]
+        negotiation:
+            accelerator: 720
+            enquiry: [0, 20]
+            tender:  [0, 20]
+    keywords_file: 25h8
+    roles:
+        tender_owner:   u25h8_Owner
+        provider:       u25h8_Provider
+        provider1:      u25h8_Provider1
+        viewer:         u25h8_Viewer
+    timeout_on_wait: 180
+tenderonline:
+    intervals:
+        default:
+            accelerator: 720
+            enquiry: [0, 50]
+            tender:  [0, 15]
+        belowThreshold:
+            accelerator: 60
+            enquiry: [0, 60]
+            tender:  [0, 15]
+        openua:
+            accelerator: 720
+            tender:  [0, 70]
+        openeu:
+            accelerator: 720
+            tender:  [0, 62]
+        negotiation:
+            accelerator: 720
+            enquiry: [0, 20]
+            tender:  [0, 20]
+    keywords_file: tenderonline
+    roles:
+        tender_owner:   tenderonline_Owner
+        provider:       tenderonline_Provider
+        provider1:      tenderonline_Provider1
+        viewer:         tenderonline_Viewer
+    timeout_on_wait: 180
 ztv:
     intervals:
         default:
@@ -111,12 +165,27 @@ Newtend:
 PrivatMarket:
     intervals:
         default:
-            enquiry: [0, 15]
-            tender:  [0, 15]
+            accelerator: 1440
+            enquiry: [0, 18]
+            tender:  [0, 18]
+        openeu:
+            accelerator: 1440
+            tender:  [0, 50]
+        openua:
+            accelerator: 1440
+            tender:  [0, 65]
+        belowThreshold:
+            accelerator: 240
+            enquiry: [0, 65]
+            tender:  [0, 65]
+        negotiation:
+            accelerator: 720
+            enquiry: [0, 20]
+            tender:  [0, 20]
     keywords_file: privatmarket
     roles:
         provider:       PrivatMarket_Provider
-        provider1:      PrivatMarket_Provider1
+        tender_owner:   PrivatMarket_Owner
         viewer:         PrivatMarket_Viewer
     timeout_on_wait: 30
 Prom:
@@ -258,7 +327,7 @@ alltenders:
             accelerator: 1440
             tender:  [0, 30]
     keywords_file: alltenders
-    homepage: 'https://prozorro.shadowy.eu/?mode=test&notification=off'
+    homepage: 'https://prozorro.alltenders.com.ua/?mode=test&notification=off'
     roles:
         provider:       alltenders_Provider1
         provider1:      alltenders_Provider2
@@ -268,8 +337,9 @@ alltenders:
 Kapitalist:
     intervals:
         default:
-            enquiry: [0, 2]
-            tender:  [0, 2]
+            enquiry: [0, 15]
+            tender:  [0, 20]
+            accelerator: 1440
     keywords_file: kapitalist
     roles:
         tender_owner:   kapitalist_Owner
@@ -302,6 +372,25 @@ pzo:
         tender_owner:   pzo_Owner
         viewer:         pzo_Viewer
     timeout_on_wait: 1
+aladdin:
+    intervals:
+        belowThreshold:
+            enquiry: [0, 60]
+            tender:  [0, 15]
+            accelerator: 1440
+        openua:
+            accelerator: 1440
+            tender:  [0, 30]
+        openeu:
+            tender:  [0, 30]
+            accelerator: 1440
+    keywords_file: aladdin
+    roles:
+        tender_owner:   aladdin_Owner
+        provider:       aladdin_Provider
+        provider1:      aladdin_Provider1
+        viewer:         aladdin_Viewer
+    timeout_on_wait: 1
 torgua:
     intervals:
         default:
@@ -316,4 +405,4 @@ torgua:
         provider:       torgua_Provider
         provider1:      torgua_Provider1
         viewer:         torgua_Viewer
-    timeout_on_wait: 240
+    timeout_on_wait: 60

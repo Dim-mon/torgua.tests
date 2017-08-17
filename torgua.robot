@@ -183,6 +183,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     Input text                                                    //*[@name='tenderPeriod:startDate']     ${tenderPeriod_startDate}
     Input text                                                    //*[@name='tenderPeriod:endDate']     ${tenderPeriod_endDate}
     #EndDates
+    
 
     Click Element                                             //*[text()='Додати предмет закупiвлi']
 
@@ -230,13 +231,13 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     Click Element                                             //*[text()='Зберегти']
     Click Element                                             //*[@class='alert alert-info'][last()]//a[@data-original-title="Акцептувати чернетку"]
     Execute Javascript                                 window.scroll(9999,9999)
+    Sleep    10
+
+    Click Element                                             //*[text()="${ARGUMENTS[1]['data']['title']}"]/../../..//*[@class='glyphicon glyphicon-ok-sign']
+    Execute Javascript                                 window.scroll(9999,9999)
     Sleep    20
 
-    Click Element                                             //*[text()='${ARGUMENTS[1]['data']['title']}']/../../..//*[@class='glyphicon glyphicon-ok-sign']
-    Execute Javascript                                 window.scroll(9999,9999)
-    Sleep    30
-
-    ${tender_UAid}=    Get Text                     //*[text()='${ARGUMENTS[1]['data']['title']}']/..//*[@class='label label-primary']
+    ${tender_UAid}=    Get Text                     //*[text()="${ARGUMENTS[1]['data']['title']}"]/..//*[@class='label label-primary']
     [return]    ${tender_UAid}
 
 Завантажити документ
@@ -251,15 +252,15 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     Click Element                                             //*[@class="glyphicon glyphicon-user"]
     Click Element                                             //*[text()='Мої закупівлі']
     Execute Javascript                                 window.scroll(9999,9999)
-    Sleep    30
+    Sleep    3
     Click Element                                             //*[text()='${ARGUMENTS[2]}']/../../..//*[@class='col-lg-4 text-right']//a[@data-original-title='Редагувати']
     Click Element                                             //*[text()='Додати файл']
     Завантажити документ до тендеру     ${ARGUMENTS[1]}
     Input Text                                                    //*[@name='document:description[]']         Test text
     #debug
-    Click Element                                             //*[text()='Зберегти']
+    Click Element                                             //*[text()='Опублікувати']
     Execute Javascript                                 window.scroll(9999,9999)
-    Sleep    20
+    Sleep    5
     Click Element                                             //*[@class='panel panel-default'][1]//*[@class='glyphicon glyphicon-ok-sign']
     Sleep  10
     torgua.Пошук тендера по ідентифікатору     ${ARGUMENTS[0]}     ${ARGUMENTS[2]}
@@ -327,13 +328,13 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     ${value}=  Run keyword if  '${ARGUMENTS[2]}' == 'tenderPeriod.endDate'  Convert Date To String     ${ARGUMENTS[3]}   ELSE   CONVERT TO STRING    ${ARGUMENTS[3]}
     ${prop}=  Evaluate  '${ARGUMENTS[2]}'.replace(".", ":")
     Input text                                                //textarea[@name='${prop}'] | //input[@name='${prop}']     ${value}
-    Click Element                                             //*[text()='Зберегти']
+    Click Element                                             //*[text()='Опублікувати']
     Capture Page Screenshot
     Click Element                                             //*[text()='Мої закупівлі']
     Execute Javascript                                 window.scroll(9999,9999)
-    Sleep  15
+    Sleep  10
     Click Element                                             //*[@class='panel panel-default'][1]//*[@class='glyphicon glyphicon-ok-sign']
-    Sleep  15
+    Sleep  10
     torgua.Пошук тендера по ідентифікатору     ${ARGUMENTS[0]}     ${ARGUMENTS[1]}
     Sleep  5
 
@@ -386,8 +387,9 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     ${amount}=        Get From Dictionary         ${ARGUMENTS[2].data.value}                 amount
     ${amount}=        Convert To String         ${amount}
     torgua.Пошук тендера по ідентифікатору     ${ARGUMENTS[0]}     ${ARGUMENTS[1]}
+    
     Click Element     xpath=//*[text()='Зареєструватися як учасник']
-    Input text        xpath=//input[@name='value:amount']                                    ${amount}
+    Input text        xpath=//input[@placeholder="Ваша пропозицiя"]                                    ${amount}
     Click Element     xpath=//button[text()='Подати заявку']
     Click Element     xpath=(//*[text()='Активувати'])[1]
     Sleep  10
@@ -405,10 +407,9 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     #torgua.Пошук тендера по ідентифікатору     ${ARGUMENTS[0]}     ${ARGUMENTS[1]}
     Click Element     //*[@class='log']
     Click Element     //*[text()='Мої пропозиції']
-
     Click Element     xpath=(//*[text()='Редагувати'])[1]
     ${ARGUMENTS[3]}=  Convert to String  ${ARGUMENTS[3]}
-    Input text        xpath=//input[@name='value:amount']                ${ARGUMENTS[3]}
+    Input text        xpath=//input[@placeholder="Ваша пропозицiя"]                ${ARGUMENTS[3]}
     Click Element     //*[text()='Зберегти']
     Sleep  5
     torgua.Пошук тендера по ідентифікатору        ${ARGUMENTS[0]}     ${ARGUMENTS[1]}
@@ -437,7 +438,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     Click Element     //*[@class='log']
     Click Element     //*[text()='Мої пропозиції']
     Click Element     xpath=(//*[text()='Редагувати'])[1]
-    Click Element     //*[text()=' Додати документ']
+    Click Element     //*[text()='Додати документ']
     Choose File                                 //*[@name='documents:file[]']                    ${ARGUMENTS[1]}
     Click Element     //*[text()='Зберегти']
     Sleep  5
@@ -487,7 +488,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
     Click Element                                             //*[text()='Мої закупівлі']
     Click Element                                             //*[@id="tendertab"]
     Execute Javascript                                 window.scroll(9999,9999)
-    Sleep  20
+    Sleep  3
     Click Element                                             //*[@id='tendersList']//*[text()='${ARGUMENTS[1]}']//ancestor::*[3]//*[@class='glyphicon glyphicon-pencil']
 
 Отримати інформацію із тендера
@@ -521,7 +522,7 @@ ${locator.document.title}             xpath=//*[@class='doc_title']
 Отримати документ
     [Arguments]  @{ARGUMENTS}
     ${docName}=    Get Text         xpath=(//*[@class='doc_title'])
-    ${docUrl}=     Get Element Attribute         xpath=(//*[@style='padding: 5px 0; display: block; border-bottom: 1px solid #fff;'])@href
+    ${docUrl}=     Get Element Attribute         xpath=(//*[@style='padding: 5px 0; display: block; border-bottom: 1px solid #fff; '])@href
     Download File From Url  ${docUrl}  ${OUTPUT_DIR}${/}${docName}
     [return]  ${docName}
 Отримати Посилання На Аукціон Для Глядача
